@@ -447,6 +447,10 @@
       },
 
       touchStart(e) {
+        this.curX = e.touches[0].pageX;
+        this.lastX = this.curX;
+        this.curY = e.touches[0].pageY
+        this.lastY = this.curY;
         // Don't react if initial down happens on a form element
         if (!this.formElementScroll && e.target.tagName.match(/input|textarea|select/i)) {
           return
@@ -455,11 +459,19 @@
       },
 
       touchMove(e) {
+        this.curX = e.touches[0].pageX;
+        this.curY = e.touches[0].pageY;
+        this.delta = this.curX - this.lastX;
+        this.deltaY = this.curY - this.lastY;
         if (!this.formElementScroll && e.target.tagName.match(/input|textarea|select/i)) {
           return
         }
-        e.preventDefault()
-        this.scroller.doTouchMove(e.touches, e.timeStamp)
+        if (Math.abs(this.delta) > Math.abs(this.deltaY)*2) {
+          // console.log('1')
+        } else {
+          e.preventDefault()
+          this.scroller.doTouchMove(e.touches, e.timeStamp)
+        }
       },
 
       touchEnd(e) {

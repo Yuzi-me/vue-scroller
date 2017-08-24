@@ -12,7 +12,8 @@ In purpose of smooth scrolling, pull to refresh and infinite loading.
 ## Yuzi 解决
 ```
 1. 解决页面html元素变化，滚动高度跟随变化
-2. 解决scroll组件里面用form元素不能滚动问题
+2. 解决scroll组件里面用form元素不能滚动问题  :formElementScroll="true"
+3. 解决scroll组件里元素使用overflow-x: auto不能滚动问题
 ```
 
 ## How to use
