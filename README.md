@@ -9,6 +9,12 @@ In purpose of smooth scrolling, pull to refresh and infinite loading.
 
 [https://wangdahoo.github.io/vue-scroller/](https://wangdahoo.github.io/vue-scroller/)
 
+## Yuzi 解决
+```
+1. 解决页面html元素变化，滚动高度跟随变化
+2. 解决scroll组件里面用form元素不能滚动问题
+```
+
 ## How to use
 
 ```bash
@@ -55,6 +61,7 @@ https://github.com/wangdahoo/vue-scroller-demo
 | refreshLayerColor | text color of `pull-to-refresh` layer | N | #AAA |
 | loadingLayerColor | text color of `infinite-loading` layer | N | #AAA |
 | minContentHeight | min content height (px) of `scroll-content` | N | 0 |
+| formElementScroll | The form `input textarea select` element scrolls | N | `true` |
 
 #### Scroller vm instance methods:
 

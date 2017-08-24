@@ -254,6 +254,11 @@
       minContentHeight: {
         type: Number,
         default: 0 // px
+      },
+
+      formElementScroll: {
+        type: Boolean,
+        default: false
       }
     },
 
@@ -443,13 +448,16 @@
 
       touchStart(e) {
         // Don't react if initial down happens on a form element
-        if (e.target.tagName.match(/input|textarea|select/i)) {
+        if (!this.formElementScroll && e.target.tagName.match(/input|textarea|select/i)) {
           return
         }
         this.scroller.doTouchStart(e.touches, e.timeStamp)
       },
 
       touchMove(e) {
+        if (!this.formElementScroll && e.target.tagName.match(/input|textarea|select/i)) {
+          return
+        }
         e.preventDefault()
         this.scroller.doTouchMove(e.touches, e.timeStamp)
       },
@@ -460,7 +468,7 @@
 
       mouseDown(e) {
         // Don't react if initial down happens on a form element
-        if (e.target.tagName.match(/input|textarea|select/i)) {
+        if (!this.formElementScroll && e.target.tagName.match(/input|textarea|select/i)) {
           return
         }
         this.scroller.doTouchStart([{
