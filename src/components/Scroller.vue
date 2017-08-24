@@ -293,7 +293,8 @@
         pullToRefreshLayer: undefined,
         mousedown: false,
         infiniteTimer: undefined,
-        resizeTimer: undefined
+        resizeTimer: undefined,
+        autoHeightTimer: undefined,
       }
     },
 
@@ -383,10 +384,28 @@
           this.resize()
         }
       }, 10);
+
+      // onContentAutoHeight
+      const contentAutoHeight = () => {
+        return {
+          height: this.container.clientHeight
+        }
+      }
+
+      let { content_auto_height } = contentAutoHeight()
+
+      this.autoHeightTimer = setInterval(() => {
+        let { height } = contentAutoHeight()
+        if (height !== content_auto_height) {
+          content_auto_height = height
+          this.resize()
+        }
+      }, 10);
     },
 
     deactivated () {
       clearInterval(this.resizeTimer);
+      clearInterval(this.autoHeightTimer);
       if (this.infiniteTimer) clearInterval(this.infiniteTimer);
     },
 
