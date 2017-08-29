@@ -303,7 +303,7 @@
       }
     },
 
-    activated () {
+    mounted () {
       this.container = document.getElementById(this.containerId)
       this.container.style.width = this.w
       this.container.style.height = this.h
@@ -408,7 +408,7 @@
       }, 10);
     },
 
-    deactivated () {
+    destroyed () {
       clearInterval(this.resizeTimer);
       clearInterval(this.autoHeightTimer);
       if (this.infiniteTimer) clearInterval(this.infiniteTimer);
